@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+
+  <body>
+
+    <div id="app">
+  
+        <div> {{ firstName + ' ' + lastName }} </div>  <!-- This works but is not recommended -->
+  
+        <div> {{ getFullName() }} </div>  <!-- A method is better but this code will run everytime getFulleName is called -->
+  
+        <div> {{ fullName }}</div> <!-- using a computed property is best for this case. Because the value is cached and the will only run if first name or last name changes.-->
+  
+    </div>
+
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          firstName : "Hattan",
+          lastName : "Shobokshi"
+        },
+        methods : {
+            getFullName : function() {
+                return this.firstName + ' ' + this.lastName;
+            }
+        },
+        computed : {
+            fullName : function(){
+                return this.firstName + ' ' + this.lastName;
+            }
+        } 
+      });
+    </script>
+    
+  </body>
+</html>

@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+
+  <body>
+
+    <div id="app">
+        <h1>This example loads a joke from an ajax call to icanhazdadjoke.com</h1>
+        <div> {{ joke }} </div>
+
+    </div>
+
+    <script>
+      var app = new Vue({
+        el: "#app",
+        data: {
+          joke: ""
+        },
+        mounted : function(){ /* mounted is vue lifecycle hook you can use */
+            getJoke();
+        }
+      });
+
+      function getJoke(){
+        window.fetch('https://icanhazdadjoke.com',{ headers: {
+            "Accept" : "text/plain"
+        }})
+        .then((resp) => resp.text()) 
+        .then(function(data) {
+            app.joke = data;
+        });
+      }
+    </script>
+    
+  </body>
+</html>
